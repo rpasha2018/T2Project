@@ -25,13 +25,15 @@
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
 	var balloon = new Image();
+	var bgImage = new Image();
+	bgImage.src="track.png"
 	balloon.src="balloon.png";
 
 	var balloonHeight = 125;
 	var balloonWidth = 65;
-	var currPath = path1;
+	
 	var ballx = 0;
-	var bally = 0;
+	var bally = 150;
 	var path1 = 1;
 	var path2 = 2;
 	var path3 = 3;
@@ -45,100 +47,107 @@
 	var path11 = 11;
 	var path12 = 12;
 	var path13 = 13;
+	var currPath = path1;
 
-	setInterval(animate, 33);
+	setInterval(go, .1);
 
-	function animate() {
-		clearBackground();
-		drawThings();
+	function go() {
+		drawBackground();
+		doAnimation();
 	}
 
-	function clearBackground() {
-	context.fillStyle = "track.png";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+	function drawBackground() {
+    ctx.drawImage(bgImage,0, 0);
 }
 
-	draw = function() {
+	function doAnimation() {
 
+
+
+		ctx.drawImage(balloon, ballx,bally);
+		console.log(currPath);
 		if(currPath == path1){
-			x++;
-			if(x + balloonWidth >= 172)	{
+			ballx++;
+			if(ballx + balloonWidth >= 170)	{
 			currPath = path2;
+			
 		}
 
 		}
 		else if(currPath == path2){
-			y++;
-			if(y + balloonHeight >= 180) {
+			bally--;
+			if(bally + balloonHeight <= 100) 
 				currPath = path3;
 
-		}
+		
 
 		}
 		else if(currPath == path3){
-			x++;
-			if(x + balloonWidth >= 179) {
+			ballx++;
+			if(ballx + balloonWidth >= 350) 
 				currPath = path4;
-			}
+			
 		}
 		else if(currPath == path4){
-			y--;
-			if(y + balloonHeight <= 429) {
+			bally++;
+			if(bally + balloonHeight >= 450) 
 				currPath = path5;;
-			}
+			
 		}
 		else if(currPath == path5){
-			x--;
-			if(x + balloonWidth <= 94) {
+			ballx--;
+			if(ballx + balloonWidth <= 120) 
 				currPath = path6;
-			}
+			
 
 		}
 		else if(currPath == path6){
-			y--;
-			if(y + balloonHeight <= 43) {
+			bally++;
+			if(bally + balloonHeight >= 570) 
 				currPath = path7;
-			}
+			
 		}
 		else if(currPath == path7){
-			x++;
-			if(x + balloonWidth >= 627) {
+			ballx++;
+			if(ballx + balloonWidth >= 670) 
 				currPath = path8;
-			}
+			
 
 		}
 		else if(currPath == path8){
-			y++;
-			if(y + balloonHeight >= 223) {
+			bally--;
+			if(bally + balloonHeight <= 375) 
 				currPath = path9;
-			}
+			
 
 	}
 		else if(currPath == path9){
-			x--;
-			if(x + balloonWidth <= 465)
+			ballx--;
+			if(ballx + balloonWidth <= 480)
 				currPath = path10;
 		}
+
+
 		else if(currPath == path10){
-			y++;
-			if(y + balloonHeight >= 400)
+			bally--;
+			if(bally + balloonHeight <= 200)
 				currPath = path11;
 		}
+
+
 		else if(currPath == path11){
-			y++;
-			if(y + balloonHeight >= 600)
+			ballx++;
+			if(ballx + balloonWidth >= 690)
 				currPath = path12;
 		}
-		else if(currPath == path12){
-			y++;
-			if(y + balloonHeight >= 590)
-				currPath = path13;
-		}
-		else if(currPath == path13){
-			x++;
-			if(x + balloonWidth >= 398)
-				y++;
-		}
+
+
+		else if(currPath == path12)
+			bally--;
+			
+
+
+		
 
 		}
 
