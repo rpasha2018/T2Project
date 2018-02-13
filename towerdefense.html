@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html>
-<title> Tower Defense </title>
 
+<title> Tower Defense </title>
 <style>
 #myCanvas{
 	background-image: url(track.png);
-
+	padding: 0px;
+	margin: 0px;
 }
-
-
+body {
+	padding: 0px;
+	margin: 0px;
+}
+#buyMenu {
+	border: 20px solid red;
+	position: fixed;
+	top: 100px;
+	left: 200px;
+}
 </style>
 <body>
-
-
-	
-
 <canvas id="myCanvas" width="686" height="593" style="border:1px solid green"> 
+</canvas>
 
-
-
- </canvas>
+<img id="demo" src="download.png" alt="X" >
+<img id="buyMenu" src="download.png">
 
 <script>
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");
 	var balloon = new Image();
 	var bgImage = new Image();
-	bgImage.src="track.png"
+	var X = document.getElementById('demo');
+	
+	X.addEventListener("click", doMenu, false);
+	
+	bgImage.src="track.png";
 	balloon.src="balloon.png";
-
+	
+	var buyMenu = document.getElementById('buyMenu');
+	
 	var balloonHeight = 125;
 	var balloonWidth = 65;
-	
 	var ballx = 0;
 	var bally = 150;
 	var path1 = 1;
@@ -55,104 +65,82 @@
 		drawBackground();
 		doAnimation();
 	}
-
 	function drawBackground() {
-    ctx.drawImage(bgImage,0, 0);
-}
-
+    	ctx.drawImage(bgImage,0, 0);
+    	ctx.drawImage(X, 30, 50);
+	}
 	function doAnimation() {
-
-
-
 		ctx.drawImage(balloon, ballx,bally);
 		console.log(currPath);
+
 		if(currPath == path1){
 			ballx++;
 			if(ballx + balloonWidth >= 170)	{
 			currPath = path2;
-			
 		}
-
 		}
 		else if(currPath == path2){
 			bally--;
 			if(bally + balloonHeight <= 100) 
 				currPath = path3;
-
-		
-
 		}
 		else if(currPath == path3){
 			ballx++;
 			if(ballx + balloonWidth >= 350) 
-				currPath = path4;
-			
+				currPath = path4;	
 		}
 		else if(currPath == path4){
 			bally++;
 			if(bally + balloonHeight >= 450) 
-				currPath = path5;;
-			
+				currPath = path5;;	
 		}
 		else if(currPath == path5){
 			ballx--;
 			if(ballx + balloonWidth <= 120) 
 				currPath = path6;
-			
-
 		}
 		else if(currPath == path6){
 			bally++;
 			if(bally + balloonHeight >= 570) 
-				currPath = path7;
-			
+				currPath = path7;	
 		}
 		else if(currPath == path7){
 			ballx++;
 			if(ballx + balloonWidth >= 670) 
 				currPath = path8;
-			
-
 		}
 		else if(currPath == path8){
 			bally--;
 			if(bally + balloonHeight <= 375) 
 				currPath = path9;
-			
-
-	}
+		}
 		else if(currPath == path9){
 			ballx--;
 			if(ballx + balloonWidth <= 480)
 				currPath = path10;
 		}
-
-
 		else if(currPath == path10){
 			bally--;
 			if(bally + balloonHeight <= 200)
 				currPath = path11;
 		}
-
-
 		else if(currPath == path11){
 			ballx++;
 			if(ballx + balloonWidth >= 690)
 				currPath = path12;
 		}
-
-
 		else if(currPath == path12)
 			bally--;
-			
-
-
-		
-
 		}
-
-
-
+	function doMenu(event) {
+		if( buyMenu.style.visibility == "hidden" ) {
+			buyMenu.style.visibility = "visible";
+		}
+		else {
+			buyMenu.style.visibility = "hidden";
+		}
+		event.target.style.border = "7px solid red";
+}
 </script>
 </body>
 </html>
